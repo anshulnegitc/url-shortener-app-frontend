@@ -25,10 +25,10 @@ function WorldTable() {
         <tbody className="ff-Roboto-R">
           {continents.map((c, i) => (
             <tr key={c.entityId}>
-              <th scope="row">{c.entityData.name}</th>
-              <td>{c.entityData.visitor}</td>
-              <td>{c.entityData.links_gen}</td>
-              <td>{c.entityData.links_redirect}</td>
+              <th scope="row">{c.name}</th>
+              <td>{c.visitor}</td>
+              <td>{c.links_gen}</td>
+              <td>{c.links_redirect}</td>
             </tr>
           ))}
         </tbody>

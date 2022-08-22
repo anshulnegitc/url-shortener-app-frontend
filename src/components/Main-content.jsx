@@ -62,7 +62,6 @@ function MainContent() {
           cardAna = cardAnalytics;
 
         while (i < len) {
-          console.log(records[i]);
           if (["heart", "like", "star"].includes(records[i].name)) {
             exp[[records[i].name]] = {};
             exp[[records[i].name]].id = records[i].entityId;
