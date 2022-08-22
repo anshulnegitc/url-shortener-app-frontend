@@ -14,7 +14,7 @@ function Footer() {
     },
     {
       icon: faGithubSquare,
-      link: "https://dev.to/anshulnegitc",
+      link: "https://github.com/anshulnegitc",
     },
     {
       icon: faLinkedin,

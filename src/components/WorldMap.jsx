@@ -359,10 +359,10 @@ function WorldMap() {
     api.getContinents(continent).then((res) => {
       const c = res.data.data.records[0];
       setContinent({
-        name: c.entityData.name,
-        visitor: c.entityData.visitor,
-        links_redirect: c.entityData.links_redirect,
-        links_gen: c.entityData.links_gen,
+        name: c.name,
+        visitor: c.visitor,
+        links_redirect: c.links_redirect,
+        links_gen: c.links_gen,
       });
     });
   };

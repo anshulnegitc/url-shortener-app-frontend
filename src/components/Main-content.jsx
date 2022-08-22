@@ -62,19 +62,17 @@ function MainContent() {
           cardAna = cardAnalytics;
 
         while (i < len) {
-          if (["heart", "like", "star"].includes(records[i].entityData.name)) {
-            exp[[records[i].entityData.name]] = {};
-            exp[[records[i].entityData.name]].id = records[i].entityId;
-            exp[[records[i].entityData.name]].count =
-              records[i].entityData.count;
+          console.log(records[i]);
+          if (["heart", "like", "star"].includes(records[i].name)) {
+            exp[[records[i].name]] = {};
+            exp[[records[i].name]].id = records[i].entityId;
+            exp[[records[i].name]].count = records[i].count;
           } else {
-            const index = cardAna.findIndex(
-              (c) => c.slug === records[i].entityData.name
-            );
+            const index = cardAna.findIndex((c) => c.slug === records[i].name);
             cardAna[index].count =
-              records[i].entityData.name === "visitor"
-                ? records[i].entityData.count + 1
-                : records[i].entityData.count;
+              records[i].name === "visitor"
+                ? records[i].count + 1
+                : records[i].count;
             cardAna[index].id = records[i].entityId;
           }
 
@@ -98,9 +96,9 @@ function MainContent() {
 
       setExp({
         ...exp,
-        [record.entityData.name]: {
+        [record.name]: {
           id: record.entityId,
-          count: record.entityData.count,
+          count: record.count,
         },
       });
     });
