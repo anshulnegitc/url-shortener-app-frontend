@@ -109,7 +109,7 @@ function MainContent() {
     setCardAnalytics(nCardAnalytics);
   };
   return (
-    <main className="max-container mx-auto h-100 mt-5 mb-4 d-flex flex-column w-100">
+    <main className="max-container mx-auto h-100 mt-xxl-5 mt-xl-5 mt-lg-5 mt-4 mb-4 d-flex flex-column w-100">
       <section>
         <div className="d-flex">
           {width ? null : (

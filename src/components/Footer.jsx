@@ -26,7 +26,7 @@ function Footer() {
     },
   ];
   return (
-    <footer className="max-container mx-auto w-100 mt-auto">
+    <footer className="max-container mx-auto w-100 mt-xxl-auto m-xl-auto mt-lg-auto mt-5">
       <div className="d-flex flex-wrap justify-content-between py-4 border-top">
         <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-5 col-12 d-flex justify-content-xxl-start justify-content-xl-start justify-content-lg-start justify-content-center">
           <span className="text-muted text-xxl-start text-xl-start text-lg-start text-center ff-Roboto-M">
