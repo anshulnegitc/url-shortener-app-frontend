@@ -90,6 +90,10 @@ function MainContent() {
   };
 
   const updateExpression = (id) => {
+    window.open(
+      "https://github.com/anshulnegitc/url-shortener-app-backend",
+      "_blank"
+    );
     api.updateExpression(id).then((res) => {
       const record = res.data.data.record;
 
