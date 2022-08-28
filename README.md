@@ -24,15 +24,93 @@ Here's a short video that explains the project and how it uses Redis:
 
 ### How the data is stored:
 
-Refer to [this example](https://github.com/redis-developer/basic-analytics-dashboard-redis-bitmaps-nodejs#how-the-data-is-stored) for a more detailed example of what you need for this section.
+* Urls.
+    * It maps the long_url with short_url.
+    * short_url is base62 value of counter and is indexed.
+    * Expiration of 30 mins is set.
+    * Data is stored as
+````
+class Url extends Entity { }
+const urlSchema = new Schema(Url, {
+    long_url: { type: 'string' },
+    short_url: { type: 'string', indexed: true }
+});
+client.execute(['EXPIRE', `Url:EntityId`, 1800]);
+````
 
+* Counter.
+    * Stores the expression(visitor count,links redirected,links generated, heart,like,star and counter range).
+    * It permanently stores data and increment the count on respective operation.
+    * * As total visitor to a website is stored as `{entityId:"something",name:'visitor',count:2}`
+    * * And so on for every count on website.
+````
+class Counter extends Entity { }
+const counterSchema = new Schema(Counter, {
+    name: { type: 'string', indexed: true },
+    count: { type: 'number' },
+});
+counterEntity = await CounterRepository().fetch(id);
+counterEntity.entityData.count += 1;
+CounterRepository().save(counterEntity);
+````
+
+* Continent.
+    * Stores continent wise analytics on the website.
+    * It permanently stores data and increment the count of the fields on respective operation.
+    * On respective operation continent name is fetched and incremented the operation count.
+    * If on initial phase no continent is found then it creates a new one.
+    * * Data is stored as `{entityId:"",name:'Asia',links_gen:2,links_redirect:1,visitor:12}`
+````
+class Continent extends Entity { }
+const continentSchema = new Schema(Continent, {
+    name: { type: 'string', indexed: true },
+    links_gen: { type: 'number' },
+    links_redirect: { type: 'number' },
+    visitor: { type: 'number' },
+});
+let continentEntity = ContinentRepository().search().where('name').equals(result.continent).return.all();
+if (continentEntity.length) {
+    continentEntity[0].entityData[[type]] += 1;
+    ContinentRepository().save(continentEntity[0]);
+} else {
+    const entity = ContinentRepository().createEntity();
+    entity.name = result.continent;
+    entity.visitor = 1;
+    entity.links_gen = 0;
+    entity.links_redirect = 0;
+    ContinentRepository().save(entity);
+}
+````
+    
 ### How the data is accessed:
 
-Refer to [this example](https://github.com/redis-developer/basic-analytics-dashboard-redis-bitmaps-nodejs#how-the-data-is-accessed) for a more detailed example of what you need for this section.
 
-### Performance Benchmarks
+* Urls.
+    * Code is base62 counter value.
+    * On success it redirect to the original url and on failure 404 page.
+````
+url=UrlRepository().search().where('short_url').equals(code).return.first();
+In place of all we can use first also
+````
 
-[If you migrated an existing app to use Redis, please put performance benchmarks here to show the performance improvements.]
+* Expression.
+    * A list is fetched, which has count of visitor, link generated, links redirected, thumbs up, like and heart except the counter range.
+````
+const records = CounterRepository().search().where('name').not.eq('range').return.all();
+````
+
+* Continent.
+    * For desktop view individual continents analytics are fetched by continent name and for mobile view a list of continents are fetched.
+````
+records = await ContinentRepository().search().where('name').equals(c).return.all();
+````
+
+````
+records = await ContinentRepository().search().return.all();
+````
+
+
+
 
 ## How to run it locally?
 
