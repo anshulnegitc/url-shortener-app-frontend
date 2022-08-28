@@ -74,7 +74,7 @@ function GenerateLink(props) {
               className="form-control"
               value={shortUrl}
               readOnly
-              placeholder="Generate Short Url"
+              placeholder="Short Url"
             />
             <button
               type="submit"
