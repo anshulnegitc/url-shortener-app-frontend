@@ -10,7 +10,22 @@ In case url got expired/moved to other domain/not responsding, a 404 error page 
 
 Some analytics and expression values(like,star,thumbs up etc...) are permanently stored in database while urls are short lived.
 
-[Insert app screenshots](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#uploading-assets)
+**Application Architecture.**
+![Application-Architrecture](https://user-images.githubusercontent.com/55315115/187064974-93993fd0-2c64-4464-9e88-0912835b336e.jpg)
+
+**Desktop View.**
+![Img-1](https://user-images.githubusercontent.com/55315115/187065005-b5b86519-252b-4ebc-83c2-3340e887504d.png)
+
+**404 Page.**
+![Img-2](https://user-images.githubusercontent.com/55315115/187065040-67708e7e-fe8d-4c7b-811b-e08408a8810c.png)
+
+**Analytics.**
+![Img-4](https://user-images.githubusercontent.com/55315115/187065025-7f28fd3b-ac16-45f4-aee3-8600052f5c01.png)
+
+**Mobile View.**
+![Img-3](https://user-images.githubusercontent.com/55315115/187065011-d359e042-abd4-404a-8e23-617a5a21b484.png)
+
+
 
 # Overview video (Optional)
 
