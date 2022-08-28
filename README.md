@@ -52,9 +52,19 @@ const urlSchema = new Schema(Url, {
 });
 client.execute(['EXPIRE', `Url:EntityId`, 1800]);
 ````
+* Range.
+    * It's a key-value pair to store the current range of counter, initialise at the first time with 1,00,000.
+    * And gets incremented by 1,00,000 after every server restart/crash.
+````
+client.execute(['SET', 'range', 100000]);
+````
+
+````
+client.execute(['INCRBY','range', 100000]);
+````
 
 * Counter.
-    * Stores the expression(visitor count,links redirected,links generated, heart,like,star and counter range).
+    * Stores the expression(visitor count,links redirected,links generated, heart,like and star).
     * It permanently stores data and increment the count on respective operation.
     * * As total visitor to a website is stored as `{entityId:"something",name:'visitor',count:2}`
     * * And so on for every count on website.
@@ -111,7 +121,7 @@ In place of all we can use first also
 * Expression.
     * A list is fetched, which has count of visitor, link generated, links redirected, thumbs up, like and heart except the counter range.
 ````
-const records = CounterRepository().search().where('name').not.eq('range').return.all();
+const records = CounterRepository().search().return.all();
 ````
 
 * Continent.
